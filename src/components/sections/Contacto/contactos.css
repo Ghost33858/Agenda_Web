@@ -1,0 +1,47 @@
+.contacto {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 35px;
+  background: linear-gradient(135deg, #fdfdfd, #e6d3bc);
+  border-radius: 20px;
+  border: 2px solid #8b5a2b;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  font-family: 'UnifrakturCook', cursive;
+}
+
+/* TÍTULO */
+.contacto h2 {
+  text-align: center;
+  color: #4e2e1f;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* CAMPOS */
+.contacto input,
+.contacto textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  border: 2px solid #8b5a2b;
+  background: #fdfdfd;
+  color: #4e2e1f;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+/* FOCUS */
+.contacto input:focus,
+.contacto textarea:focus {
+  outline: none;
+  border-color: #4e2e1f;
+  box-shadow: 0 0 12px rgba(139, 90, 43, 0.6);
+}
+
+/* TEXTAREA */
+.contacto textarea {
+  resize: none;
+  min-height: 120px;
+}

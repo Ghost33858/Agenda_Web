@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+
+.root {
+  --blanco: #fdfdfd;
+  --cafe-claro: #c2a383;
+  --cafe: #8b5a2b;
+  --cafe-oscuro: #4e2e1f;
+}
+
+.body {
+  background: linear-gradient(135deg, var(--blanco), var(--cafe-claro));
+  font-family: 'UnifrakturCook', cursive;
+  color: var(--cafe-oscuro);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 40px;
+  text-align: center;
+}
+
+.btn-gotico {
+  background: linear-gradient(145deg, var(--cafe), var(--cafe-oscuro));
+  color: var(--blanco);
+  border: 2px solid var(--cafe-claro);
+  border-radius: 30px;
+  padding: 14px 34px;
+  font-size: 20px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+
+.btn-gotico:hover {
+  transform: translateY(-8px) scale(1.05);
+  background: linear-gradient(145deg, var(--cafe-oscuro), var(--cafe));
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+  border-color: var(--blanco);
+}
+
+.btn-gotico::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  box-shadow: 0 0 25px rgba(194, 163, 131, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-gotico:hover::after {
+  opacity: 1;
+}
+
+.h3 {
+  color: var(--cafe-oscuro);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+p {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
