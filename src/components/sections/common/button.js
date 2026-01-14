@@ -1,12 +1,13 @@
-let Button = () => {
+let Button = (title, id, img) => {
+
     let div = document.createElement("div");
-    div.className = "button";
+    div.id = id;
 
     let divImage = document.createElement("div");
     divImage.className = "button-image";
 
     let imgIcon = document.createElement("img");
-    imgIcon.src = `./assets/icons/${img}`;
+    imgIcon.src = `./src/assets/icons/${img}`;
     divImage.appendChild(imgIcon);
 
     let p = document.createElement("p");
@@ -16,8 +17,7 @@ let Button = () => {
     div.appendChild(divImage);
     div.appendChild(p);
 
-    return (div);
-
+    return div;
 }
 
-export {Button};
+export { Button };

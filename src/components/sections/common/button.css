@@ -1,0 +1,40 @@
+.boton-cafe {
+  background: linear-gradient(145deg, #8b5a2b, #4e2e1f);
+  color: #fdfdfd;
+  border: 2px solid #c2a383;
+  border-radius: 25px;
+  padding: 14px 32px;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover flotado */
+.boton-cafe:hover {
+  transform: translateY(-7px) scale(1.05);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
+  border-color: #fdfdfd;
+}
+
+/* Brillo animado */
+.boton-cafe::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  transition: all 0.6s ease;
+}

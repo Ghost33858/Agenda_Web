@@ -1,4 +1,4 @@
-import { ItemContacto } from "../../../../components/sections/common/ItemContacto.js";
+import { ItemContacto } from "../../../../src/components/sections/common/ItemContacto.js";
 
 let Contactos = () => {
     let sectionContactos = document.createElement("section");
