@@ -1,15 +1,17 @@
 import { Button } from "./components/sections/common/button.js";
 import { Contactos } from "./components/sections/Contacto/Contactos.js";
 import { NewContactForm } from "./components/sections/NewContactForm/NewContactForm.js";
+import { TodoApp } from "./components/ToDoList/todo.js";
 
 const nav = document.getElementById("nav");
 const container = document.getElementById("container");
 
 function render(view) {
   container.innerHTML = "";
-  container.appendChild(view);
+  container.appendChild(view); // view debe ser un nodo
 }
 
+// Botones
 nav.appendChild(Button(
   "Agenda",
   "agenda",
@@ -28,9 +30,7 @@ nav.appendChild(Button(
   "ToDoList",
   "todoList",
   "agenda.svg",
-  () => {
-    container.innerHTML = "<h2>ToDoList (pendiente)</h2>";
-  }
+  () => render(TodoApp()) // PASAMOS NODO DEVUELTO POR TodoApp
 ));
 
 nav.appendChild(Button(
@@ -42,18 +42,5 @@ nav.appendChild(Button(
   }
 ));
 
+// Render inicial
 render(Contactos());
-
-async function tareas() {
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const data = await response.json();
-    console.log("Tareas:", data);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
-
-tareas();
-
-console.log("Completado");
