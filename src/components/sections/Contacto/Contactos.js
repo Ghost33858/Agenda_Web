@@ -1,21 +1,25 @@
 import { ItemContacto } from "../common/ItemContacto.js";
-import { ContactList } from "./db.js";
+import { getContactsFromStorage } from "../common/LocalStorage/Storagecontacto.js";
+import { NewContactForm } from "../NewContactForm/NewContactForm.js";
 
+function Contactos() {
+    const section = document.createElement("section");
+    section.className = "contactos";
 
-let Contactos = () => {
-    let sectionContactos = document.createElement("section");
-    sectionContactos.className = "contactos";
+    const h2 = document.createElement("h2");
+    h2.textContent = "Contactos";
 
-    let h2 = document.createElement("h2");
-    h2.textContent = "contactos";
-    sectionContactos.appendChild(h2);
+    const list = document.createElement("div");
 
-    ContactList.forEach((contact) => {
-        sectionContactos.appendChild(ItemContacto("person.svg",
-            contact.nombre, contact.telefono));
+    const contactos = getContactsFromStorage();
+    contactos.forEach(contacto => {
+        list.appendChild(ItemContacto(contacto));
     });
 
-    return sectionContactos;
-};
+    section.appendChild(h2);
+    section.appendChild(list);
+
+    return section;
+}
 
 export { Contactos };

@@ -1,67 +1,42 @@
-import { ContactList } from "../Contacto/db.js";
+import { getContactsFromStorage, saveContactsToStorage } 
+from "../common/LocalStorage/Storagecontacto.js";
 
-function NewContactForm(miFuncion) {
+function NewContactForm({ onAdd }) {
   const form = document.createElement("form");
-  form.className = "new-contact-form";
-
-  const title = document.createElement("h2");
-  title.textContent = "Nuevo Contacto";
-  form.appendChild(title);
-
-  // Nombre
-  const labelNombre = document.createElement("label");
-  labelNombre.textContent = "Nombre:";
-  labelNombre.htmlFor = "nombre";
 
   const inputNombre = document.createElement("input");
-  inputNombre.type = "text";
-  inputNombre.id = "nombre";
-  inputNombre.name = "nombre";
+  inputNombre.placeholder = "Nombre";
   inputNombre.required = true;
-  inputNombre.placeholder = "Ej: Juan Pérez";
-
-  // Teléfono
-  const labelTelefono = document.createElement("label");
-  labelTelefono.textContent = "Teléfono:";
-  labelTelefono.htmlFor = "telefono";
 
   const inputTelefono = document.createElement("input");
-  inputTelefono.type = "text";
-  inputTelefono.id = "telefono";
-  inputTelefono.name = "telefono";
+  inputTelefono.placeholder = "Teléfono";
   inputTelefono.required = true;
-  inputTelefono.placeholder = "Ej: 12345678";
 
-  // Botón
   const button = document.createElement("button");
-  button.type = "submit";
   button.textContent = "Guardar";
 
-  // Agregar elementos al form
-  form.append(labelNombre, inputNombre, labelTelefono, inputTelefono, button);
+  form.append(inputNombre, inputTelefono, button);
 
-  // Evento submit
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    // Crear objeto contacto
-    const contacto = {
-      id: Date.now(), // id único
-      nombre: inputNombre.value.trim(),
-      telefono: inputTelefono.value.trim()
+    const nombre = inputNombre.value.trim();
+    const telefono = inputTelefono.value.trim();
+    if (!nombre || !telefono) return;
+
+    const contactos = getContactsFromStorage();
+
+    const nuevoContacto = {
+      id: Date.now(),
+      img: "user.svg",
+      nombre,
+      telefono
     };
 
-    // Agregar a la lista global
-    ContactList.push(contacto);
+    contactos.push(nuevoContacto);
+    saveContactsToStorage(contactos);
 
-    console.log("Contacto guardado:", contacto);
-
-    // Ejecutar función callback (por ejemplo para recargar lista)
-    if (miFuncion) {
-      miFuncion();
-    }
-
-    // Limpiar formulario
+    onAdd(nuevoContacto);
     form.reset();
   });
 
