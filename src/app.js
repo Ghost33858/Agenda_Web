@@ -3,7 +3,7 @@ import { Contactos } from "./components/sections/Contacto/Contactos.js";
 import { NewContactForm } from "./components/sections/NewContactForm/NewContactForm.js";
 import { TodoApp } from "./components/ToDoList/todo.js";
 // 1. Importamos el formulario de tareas
-import { NewTodoForm } from "./components/sections/NewTodoForm/NewTodoForm.js"; 
+import { NewTodoForm } from "./components/sections/common/newtodoform/newtodoform.js"; 
 
 const nav = document.getElementById("nav");
 const container = document.getElementById("container");

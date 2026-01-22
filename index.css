@@ -1,18 +1,44 @@
+/* Contenedor principal */
 .div-padre {
     display: flex;
-    border: 1px solid black;
-    gap: 5px;
-    padding: 5px;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center;     /* Centra los elementos verticalmente */
+    gap: 15px;               /* Más espacio entre elementos para que respiren */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil */
+    border: 2px solid #63472b; /* Borde color café en lugar de negro */
+    border-radius: 12px;     /* Esquinas redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
 }
 
+/* Estilo base para los hijos (clases comunes) */
+.div-uno, .div-dos {
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;      /* Esquinas suaves */
+    cursor: pointer;         /* Cambia el cursor para indicar que es clickeable */
+    transition: all 0.3s ease; /* Animación suave para cambios */
+    font-weight: bold;
+    color: white;
+}
+
+/* Personalización de cada uno */
 .div-uno {
-    border: 1px solid blue;
-    height: 50px;
-    width: 50px;
+    background-color: #3b5998; /* Un azul más moderno */
+    border: 1px solid #2d4373;
 }
 
 .div-dos {
-    border: 1px solid red;
-    height: 50px;
-    width: 50px;
+    background-color: #a33b3b; /* Un rojo más elegante que combine con el café */
+    border: 1px solid #7d2a2a;
+}
+
+/* Efectos al pasar el ratón (Hover) */
+.div-uno:hover, .div-dos:hover {
+    transform: scale(1.1); /* Se hacen un poco más grandes */
+    filter: brightness(1.2); /* Se iluminan un poco */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }

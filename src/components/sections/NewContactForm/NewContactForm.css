@@ -1,0 +1,51 @@
+/* --- 3. Estilos para NewTodoForm (El formulario de creación) --- */
+.todo-form-section {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: #3e2a1a;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.todo-form-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    border: none;
+    text-align: center;
+}
+
+.todo-form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: transparent; /* Quitamos el fondo del form para usar el de la sección */
+    padding: 0;
+}
+
+.todo-form-section input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 2px solid #63472b;
+    border-radius: 8px;
+    background-color: #1e140a;
+    color: white;
+    outline: none;
+}
+
+.todo-form-section input:focus {
+    border-color: #d2b48c; /* Resalta cuando el usuario escribe */
+}
+
+.todo-form-section button {
+    width: 100%;
+    padding: 15px;
+    background-color: #8b5a2b;
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

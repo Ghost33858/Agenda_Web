@@ -1,6 +1,6 @@
 import { getTodosFromStorage, saveTodosToStorage } from '../LocalStorage/storage.js';
 
-function ItemTodoList(todo, onUpdate, onDelete) {
+function ItemTodoList(todo, onDelete) {
     const li = document.createElement('li');
     const span = document.createElement('span');
     span.textContent = todo.text;
@@ -16,7 +16,7 @@ function ItemTodoList(todo, onUpdate, onDelete) {
             const todos = getTodosFromStorage().filter(t => t.id !== todo.id);
             saveTodosToStorage(todos);
             li.remove();
-            if (onDelete) onDelete(todo);
+            if (onDelete) onDelete(); // Avisar que algo se borró si es necesario
         }
     });
 

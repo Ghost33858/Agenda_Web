@@ -1,47 +1,53 @@
-.contacto {
-  max-width: 500px;
-  margin: 60px auto;
-  padding: 35px;
-  background: linear-gradient(135deg, #fdfdfd, #e6d3bc);
-  border-radius: 20px;
-  border: 2px solid #8b5a2b;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-  font-family: 'UnifrakturCook', cursive;
+/* Este es el contenedor de CADA contacto */
+.tarjeta-contacto {
+    display: flex;           /* Activa el modo flexible */
+    flex-direction: row;      /* Alinea los hijos en horizontal */
+    align-items: center;      /* Centra todo verticalmente */
+    justify-content: space-between; /* Empuja el texto a la izquierda y el botón a la derecha */
+    
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #63472b;
+    width: 100%;             /* Que ocupe el ancho del contenedor */
 }
 
-/* TÍTULO */
-.contacto h2 {
-  text-align: center;
-  color: #4e2e1f;
-  letter-spacing: 3px;
-  margin-bottom: 30px;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+/* Contenedor para agrupar Icono + Texto y que no se separen */
+.contacto-info-principal {
+    display: flex;
+    align-items: center;
+    gap: 15px;               /* Espacio entre icono y los textos */
 }
 
-/* CAMPOS */
-.contacto input,
-.contacto textarea {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 18px;
-  border-radius: 14px;
-  border: 2px solid #8b5a2b;
-  background: #fdfdfd;
-  color: #4e2e1f;
-  font-size: 16px;
-  transition: all 0.3s ease;
+/* Contenedor para Nombre y Teléfono (uno sobre otro, pero al lado del icono) */
+.contacto-detalles {
+    display: flex;
+    flex-direction: row;  /* Nombre arriba, Teléfono abajo */
+    text-align: left;
 }
 
-/* FOCUS */
-.contacto input:focus,
-.contacto textarea:focus {
-  outline: none;
-  border-color: #4e2e1f;
-  box-shadow: 0 0 12px rgba(139, 90, 43, 0.6);
+.contacto-nombre {
+    font-weight: bold;
+    color: #f5f5f5;
 }
 
-/* TEXTAREA */
-.contacto textarea {
-  resize: none;
-  min-height: 120px;
+.contacto-telefono {
+    color: #f5f5f5;
+    font-size: 0.9rem;
+}
+
+/* Botón de eliminar a la derecha */
+.btn-eliminar {
+    background-color: #8b5a2b;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-eliminar:hover {
+    background-color: #a33b3b;
 }

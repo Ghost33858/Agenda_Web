@@ -1,66 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
-
-.root {
-  --blanco: #fdfdfd;
-  --cafe-claro: #c2a383;
-  --cafe: #8b5a2b;
-  --cafe-oscuro: #4e2e1f;
+/* Contenedor principal */
+.div-padre {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center;     /* Centra los elementos verticalmente */
+    gap: 15px;               /* Más espacio entre elementos para que respiren */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil */
+    border: 2px solid #63472b; /* Borde color café en lugar de negro */
+    border-radius: 12px;     /* Esquinas redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
 }
 
-.body {
-  background: linear-gradient(135deg, var(--blanco), var(--cafe-claro));
-  font-family: 'UnifrakturCook', cursive;
-  color: var(--cafe-oscuro);
-  margin: 0;
-  padding: 0;
+/* Estilo base para los hijos (clases comunes) */
+.div-uno, .div-dos {
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;      /* Esquinas suaves */
+    cursor: pointer;         /* Cambia el cursor para indicar que es clickeable */
+    transition: all 0.3s ease; /* Animación suave para cambios */
+    font-weight: bold;
+    color: white;
 }
 
-.container {
-  padding: 40px;
-  text-align: center;
+/* Personalización de cada uno */
+.div-uno {
+    background-color: #3b5998; /* Un azul más moderno */
+    border: 1px solid #2d4373;
 }
 
-.btn-gotico {
-  background: linear-gradient(145deg, var(--cafe), var(--cafe-oscuro));
-  color: var(--blanco);
-  border: 2px solid var(--cafe-claro);
-  border-radius: 30px;
-  padding: 14px 34px;
-  font-size: 20px;
-  letter-spacing: 2px;
-  cursor: pointer;
-  transition: all 0.35s ease;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
-  position: relative;
+.div-dos {
+    background-color: #a33b3b; /* Un rojo más elegante que combine con el café */
+    border: 1px solid #7d2a2a;
 }
 
-.btn-gotico:hover {
-  transform: translateY(-8px) scale(1.05);
-  background: linear-gradient(145deg, var(--cafe-oscuro), var(--cafe));
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
-  border-color: var(--blanco);
-}
-
-.btn-gotico::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 30px;
-  box-shadow: 0 0 25px rgba(194, 163, 131, 0.5);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.btn-gotico:hover::after {
-  opacity: 1;
-}
-
-.h3 {
-  color: var(--cafe-oscuro);
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
-}
-
-p {
-  font-size: 18px;
-  letter-spacing: 1px;
+/* Efectos al pasar el ratón (Hover) */
+.div-uno:hover, .div-dos:hover {
+    transform: scale(1.1); /* Se hacen un poco más grandes */
+    filter: brightness(1.2); /* Se iluminan un poco */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }

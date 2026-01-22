@@ -15,6 +15,7 @@ password. placeholder = "Password";
 
 let button = document.createElement("button");
 button. innerHTML = "Iniciar Sesion";
+button.onclick = () => entrar();
 
 login.appendChild(h3);
 login.appendChild(user);

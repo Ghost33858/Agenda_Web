@@ -3,26 +3,26 @@ import { ItemTodoList } from '../sections/common/Itemtodolist/itemtodolist.js';
 import { getTodosFromStorage } from '../sections/common/LocalStorage/storage.js';
 
 function TodoApp() {
-    const root = document.createElement('div'); // contenedor propio
-    const ul = document.createElement('ul');
+    const section = document.createElement("section");
+    section.className = "todo-app";
 
+    const h2 = document.createElement("h2");
+    h2.textContent = "Mi Lista de Pendientes";
+
+    const ul = document.createElement("ul");
     const todos = getTodosFromStorage();
+
+    // Solo cargamos los elementos que ya están guardados
     todos.forEach(todo => {
-        const item = ItemTodoList(todo);
-        ul.appendChild(item);
+        ul.appendChild(ItemTodoList(todo, () => {
+            // Refrescar si fuera necesario al borrar
+        }));
     });
 
-    const form = NewTodoForm({
-        onAdd: (todo) => {
-            const item = ItemTodoList(todo);
-            ul.appendChild(item);
-        }
-    });
+    section.appendChild(h2);
+    section.appendChild(ul);
 
-    root.appendChild(form);
-    root.appendChild(ul);
-
-    return root; // devuelve un nodo
+    return section;
 }
 
 export { TodoApp };
