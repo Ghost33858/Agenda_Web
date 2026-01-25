@@ -4,6 +4,7 @@ import { NewContactForm } from "./components/sections/NewContactForm/NewContactF
 import { TodoApp } from "./components/ToDoList/todo.js";
 // 1. Importamos el formulario de tareas
 import { NewTodoForm } from "./components/sections/common/newtodoform/newtodoform.js"; 
+import { Perfil } from "./components/sections/common/Perfil/Perfil.js";
 
 const nav = document.getElementById("nav");
 const container = document.getElementById("container");
@@ -26,9 +27,17 @@ nav.appendChild(Button(
   "Crear contacto",
   "plus",
   "nuevo.svg",
-  // Al guardar, nos manda a la lista de contactos
-  () => render(NewContactForm(() => render(Contactos())))
+  () => render(NewContactForm({ 
+      onAdd: () => render(Contactos()) 
+  }))
 ));
+
+nav.appendChild(Button(
+  "Perfil",
+  "perfil",
+  "perfil.svg",
+  () => render(Perfil())
+)); 
 
 // --- Botones de Tareas ---
 
