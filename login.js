@@ -2,7 +2,7 @@ let login = function () {
 
 let login = document. createElement("section");
 
-let h3 = createElement("h3");
+let h3 = document.createElement("h3");
 h3.innerHTML = "Login";
 
 let user = document.createElement("input");
@@ -14,8 +14,13 @@ password. type = "password";
 password. placeholder = "Password";
 
 let button = document.createElement("button");
-button. innerHTML = "Iniciar Sesion";
-button.onclick = () => entrar();
+button.type = "button";
+button.textContent = "Iniciar sesión";
+button.addEventListener("click", (e) => {
+  e.preventDefault();
+  window.location.href = "app.html";
+});
+
 
 login.appendChild(h3);
 login.appendChild(user);

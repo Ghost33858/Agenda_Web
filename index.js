@@ -1,8 +1,9 @@
-import {login} from "./src/login.js";
+import {login} from "./login.js";
 //import {menu} from "./menu.js"
 let root = document.getElementById("root");
 
 root.appendChild(login());
+
  
 /*root.innerHTML = "<h1>Hola Mundo</h1>";
  
