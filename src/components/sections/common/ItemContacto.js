@@ -1,41 +1,45 @@
-import { getContactsFromStorage, saveContactsToStorage }
+import { getContactsFromStorage, saveContactsToStorage } 
   from '../common/LocalStorage/Storagecontacto.js';
 
-function ItemContacto(contacto, onDelete) {
-  const div = document.createElement("div");
-  div.className = "item-contacto";
+function ItemContacto(contacto, onUpdate) {
+  const item = document.createElement("div");
+  item.className = "tarjeta-contacto";
+  item.innerHTML = `
+    <div class="contacto-info-principal">
+        <button class="btn-fav">${contacto.favorite ? '⭐' : '☆'}</button>
+        <img src="./src/assets/icons/${contacto.img || 'user.svg'}" alt="Contacto" class="contacto-img">
+        <div class="contacto-detalles">
+            <span class="contacto-nombre">${contacto.nombre}</span>
+            <span class="contacto-telefono">${contacto.telefono}</span>
+        </div>
+    </div>
+    <button class="btn-eliminar">Eliminar</button>
+  `;
 
-  const etiquetaImg = document.createElement("img");
-  etiquetaImg.src = `./src/assets/icons/${contacto.img}`;
-  etiquetaImg.alt = "Contacto";
+  const btnFav = item.querySelector(".btn-fav");
+  btnFav.addEventListener("click", () => {
+    const contactos = getContactsFromStorage();
+    const index = contactos.findIndex(c => c.id === contacto.id);
 
-  const etiquetaNombre = document.createElement("p");
-  etiquetaNombre.className = "contacto-nombre";
-  etiquetaNombre.textContent = contacto.nombre;
-
-  const etiquetaTelefono = document.createElement("p");
-  etiquetaTelefono.className = "contacto-telefono";
-  etiquetaTelefono.textContent = contacto.telefono;
-
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "Eliminar";
-
-  div.appendChild(etiquetaImg);
-  div.appendChild(etiquetaNombre);
-  div.appendChild(etiquetaTelefono);
-  div.appendChild(deleteBtn);
-
-  deleteBtn.addEventListener("click", () => {
-    if (confirm("¿Eliminar este contacto?")) {
-      const contactos = getContactsFromStorage()
-        .filter(c => c.id !== contacto.id);
+    if (index !== -1) {
+      contactos[index].favorite = !contactos[index].favorite;
       saveContactsToStorage(contactos);
-      div.remove();
-      if (onDelete) onDelete(contacto);
+      if (onUpdate) onUpdate();
     }
   });
 
-  return div;
+  const btnEliminar = item.querySelector(".btn-eliminar");
+  btnEliminar.addEventListener("click", () => {
+    if (confirm(`¿Eliminar a ${contacto.nombre}?`)) {
+      const contactos = getContactsFromStorage().filter(c => c.id !== contacto.id);
+      saveContactsToStorage(contactos);
+      
+      item.remove(); 
+      if (onUpdate) onUpdate(); 
+    }
+  });
+
+  return item;
 }
 
 export { ItemContacto };

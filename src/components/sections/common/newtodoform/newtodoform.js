@@ -29,7 +29,6 @@ function NewTodoForm({ onAdd }) {
         todos.push(newTodo);
         saveTodosToStorage(todos);
 
-        // Al terminar, ejecutamos onAdd que nos llevará de vuelta a la lista
         if (onAdd) onAdd(); 
     });
 

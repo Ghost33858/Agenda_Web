@@ -5,6 +5,7 @@ import { TodoApp } from "./components/ToDoList/todo.js";
 // 1. Importamos el formulario de tareas
 import { NewTodoForm } from "./components/sections/common/newtodoform/newtodoform.js"; 
 import { Perfil } from "./components/sections/common/Perfil/Perfil.js";
+import { Favoritos } from "./components/sections/common/Favoritos/favoritos.js";
 
 const nav = document.getElementById("nav");
 const container = document.getElementById("container");
@@ -30,6 +31,13 @@ nav.appendChild(Button(
   () => render(NewContactForm({ 
       onAdd: () => render(Contactos()) 
   }))
+));
+
+nav.appendChild(Button(
+  "Favoritos",
+  "favorito",
+  "favorito.svg", // Asegúrate de tener este icono
+  () => render(Favoritos())
 ));
 
 nav.appendChild(Button(

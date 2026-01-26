@@ -1,8 +1,9 @@
-import { getContactsFromStorage, saveContactsToStorage } 
-from "../common/LocalStorage/Storagecontacto.js";
+import { getContactsFromStorage, saveContactsToStorage }
+  from "../common/LocalStorage/Storagecontacto.js";
 
 function NewContactForm({ onAdd }) {
   const form = document.createElement("form");
+  form.innerHTML = `<h2>Nuevo Contacto</h2>`;
 
   const inputNombre = document.createElement("input");
   inputNombre.placeholder = "Nombre";
@@ -30,7 +31,8 @@ function NewContactForm({ onAdd }) {
       id: Date.now(),
       img: "user.svg",
       nombre,
-      telefono
+      telefono,
+      favorite: false
     };
 
     contactos.push(nuevoContacto);
