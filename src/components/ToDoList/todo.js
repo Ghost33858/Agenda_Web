@@ -10,16 +10,18 @@ function TodoApp() {
 
     const ul = document.createElement("ul");
 
-    // 🔹 Obtener y ordenar por severidad (Alta → Media → Baja)
-    const todos = getTodosFromStorage()
-        .sort((a, b) => (b.severity || 1) - (a.severity || 1));
+    // Obtener tareas
+    const todos = getTodosFromStorage();
 
+    // Ordenar por severidad (Alta → Media → Baja)
+    todos.sort((a, b) => (b.severity ?? 1) - (a.severity ?? 1));
+
+    // Renderizar tareas
     todos.forEach(todo => {
         ul.appendChild(ItemTodoList(todo));
     });
 
-    section.appendChild(h2);
-    section.appendChild(ul);
+    section.append(h2, ul);
 
     return section;
 }

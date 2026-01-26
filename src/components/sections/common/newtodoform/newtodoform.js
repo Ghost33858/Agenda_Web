@@ -1,6 +1,5 @@
 import { getTodosFromStorage, saveTodosToStorage } from '../LocalStorage/storage.js';
 
-
 function NewTodoForm({ onAdd }) {
 
     const section = document.createElement('section');
@@ -14,6 +13,9 @@ function NewTodoForm({ onAdd }) {
     const textarea = document.createElement('textarea');
     textarea.placeholder = "Descripción de la tarea";
 
+    const dateInput = document.createElement('input');
+    dateInput.type = "date";
+
     const select = document.createElement('select');
     select.innerHTML = `
         <option value="">Severidad</option>
@@ -25,7 +27,7 @@ function NewTodoForm({ onAdd }) {
     const button = document.createElement('button');
     button.textContent = "Guardar Tarea";
 
-    form.append(input, textarea, select, button);
+    form.append(input, textarea, dateInput, select, button);
     section.appendChild(form);
 
     form.addEventListener('submit', (e) => {
@@ -33,9 +35,10 @@ function NewTodoForm({ onAdd }) {
 
         const text = input.value.trim();
         const description = textarea.value.trim();
+        const date = dateInput.value;
         const severity = parseInt(select.value);
 
-        if (!text || !severity) return;
+        if (!text || !severity || !date) return;
 
         const todos = getTodosFromStorage();
 
@@ -43,7 +46,9 @@ function NewTodoForm({ onAdd }) {
             id: Date.now(),
             text,
             description,
-            severity
+            date,
+            severity,
+            completed: false
         };
 
         todos.push(newTodo);
