@@ -1,9 +1,10 @@
 .btn-fav {
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
     cursor: pointer;
     transition: transform 0.2s;
+    padding: clamp(4px, 1.5vw, 8px);
 }
 
 .btn-fav:hover {

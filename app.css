@@ -1,202 +1,206 @@
-/* 1. RESET Y BASE */
+/* ===============================
+   1. RESET Y BASE
+================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    outline: none;
 }
 
 body {
-    background-color: #fdfaf7; /* Blanco crema para el fondo general */
-    color: #2c1e12; 
-    overflow: hidden;
+    background-color: #fdfaf7;
+    color: #2c1e12;
 }
 
 #app {
-    width: 100vw;
-    height: 100vh;
     display: flex;
+    min-height: 100vh;
+    flex-wrap: wrap;
 }
 
-/* 2. MENÚ LATERAL */
+/* ===============================
+   2. MENÚ LATERAL RESPONSIVO
+================================ */
 #nav {
+    background-color: #4b3621;
     width: 260px;
-    height: 100vh;
-    background-color: #4b3621; /* Café fuerte */
+    min-width: 200px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    padding: 25px;
-    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
-    z-index: 10;
-}
-
-/* Botones del menú */
-#nav button {
-    background-color: transparent;
-    border: none;
-    color: #000000 !important; /* TEXTO NEGRO */
-    padding: 12px 15px;
-    text-align: left;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
     gap: 10px;
 }
 
+#nav button {
+    background: transparent;
+    border: none;
+    color: #000;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: left;
+}
+
 #nav button:hover {
-    background-color: #d2b48c; /* Canela al pasar el mouse */
-    color: #2c1e12 !important;
+    background-color: #d2b48c;
 }
 
-/* 3. CONTENEDOR PRINCIPAL (Fondo Liso) */
+/* ===============================
+   3. CONTENIDO PRINCIPAL
+================================ */
 #container {
-    flex-grow: 1;
-    height: 100vh;
-    padding: 50px;
-    overflow-y: auto;
-    background-color: #ffffff; /* BLANCO LISO (Sin puntos ni patrones) */
+    flex: 1;
+    padding: clamp(20px, 4vw, 50px);
+    background-color: #ffffff;
 }
 
-/* 4. TÍTULOS Y FORMULARIOS */
+/* ===============================
+   4. TÍTULOS Y FORMULARIOS
+================================ */
 h2 {
-    margin-bottom: 30px;
-    font-size: 2.2rem;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
     color: #4b3621;
+    margin-bottom: 25px;
     border-bottom: 3px solid #d2b48c;
     display: inline-block;
-    padding-bottom: 5px;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    width: 100%;
     max-width: 450px;
-    background: #ffffff;
+    background: #fff;
     padding: 30px;
     border-radius: 12px;
     border: 1px solid #e0d6cc;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Sombra suave simple */
-    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 input {
     padding: 12px;
     border-radius: 6px;
     border: 1px solid #d2b48c;
-    background-color: #fff;
-    color: #000000;
     font-size: 1rem;
-}
-
-input:focus {
-    border-color: #4b3621;
 }
 
 form button {
     padding: 12px;
     background-color: #4b3621;
-    color: white;
+    color: #fff;
     border: none;
     border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
     font-weight: bold;
+    cursor: pointer;
 }
 
 form button:hover {
     background-color: #63472b;
 }
 
-/* 5. LISTAS Y TARJETAS */
-.contactos, .todo-app ul {
+/* ===============================
+   5. TARJETAS RESPONSIVAS
+================================ */
+.contactos,
+.todo-app ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espacio entre cada tarjeta */
-    width: 100%;
+    gap: 15px;
 }
 
-.tarjeta-contacto, .todo-item, .todo-app li {
-    background: #ffffff;
+.tarjeta-contacto,
+.todo-item,
+.todo-app li {
+    background: #fff;
     border: 1px solid #eee4da;
     border-left: 5px solid #d2b48c;
-    padding: 20px 30px; /* Más relleno interno para dar aire */
     border-radius: 8px;
+    padding: 20px;
     display: flex;
+    gap: 15px;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
 }
 
-.tarjeta-contacto:hover {
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-}
-
-/* Parte Izquierda de la tarjeta (Estrella, Foto, Textos) */
-.contacto-info-principal, .todo-left {
+/* Información */
+.contacto-info-principal {
     display: flex;
+    gap: 20px;
     align-items: center;
-    gap: 25px; /* <-- AQUÍ ESTÁ EL ESPACIO EXTRA ENTRE LOS DATOS */
-    width: 100%;
+    flex-wrap: wrap;
 }
 
-/* Textos */
 .contacto-detalles {
     display: flex;
-    flex-direction: row; /* Alineación lateral (uno al lado del otro) */
-    align-items: center;  /* Los centra verticalmente entre ellos */
-    gap: 20px;            /* Espacio horizontal de 20px entre nombre y número */
+    gap: 15px;
+    flex-wrap: wrap;
 }
 
-.contacto-nombre, .todo-item span {
-    color: #2c1e12 !important; /* Texto oscuro */
-    font-weight: bold;
-    font-size: 1rem;
-    display: block; /* Asegura que ocupe su propia línea si es necesario */
+.contacto-nombre,
+.contacto-telefono {
+    color: #000000 !important;
 }
 
 .contacto-telefono {
-    color: #63472b !important;
-    font-size: 1rem;
-    margin-top: 5px; /* Separación entre nombre y teléfono */
+    opacity: 0.9;
 }
 
-/* 6. BOTONES (Editar / Eliminar) */
-.btn-eliminar, .btn-delete {
-    background-color: #a33b3b;
-    color: white;
+
+/* ===============================
+   6. BOTONES
+================================ */
+.btn-edit {
+    background-color: #e0d6cc;
     border: none;
     padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
-    white-space: nowrap; /* Evita que el texto del botón se rompa */
+}
+
+.btn-eliminar {
+    background-color: #a33b3b;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .btn-eliminar:hover {
     background-color: #c0392b;
 }
 
-.btn-fav {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0 10px; /* Espacio alrededor de la estrella */
-}
+/* ===============================
+   7. ADAPTACIÓN NATURAL MÓVIL
+================================ */
+@media (max-width: 768px) {
+    #app {
+        flex-direction: column;
+    }
 
-.btn-edit {
-    background-color: #e0d6cc;
-    color: #2c1e12;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
+    #nav {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #nav button {
+        flex: 1 1 45%;
+        text-align: center;
+    }
+
+    .tarjeta-contacto {
+        align-items: flex-start;
+    }
+
+    .btn-edit,
+    .btn-eliminar {
+        width: 100%;
+    }
 }

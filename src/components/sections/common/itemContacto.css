@@ -1,34 +1,40 @@
-.todo-item {
+.todo-app li {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #8b5a2b;
+    padding: 15px 20px;
+    border-radius: 8px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-left: 8px solid;
-    padding: 15px;
-    border-radius: 10px;
+
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
-/* Baja */
-.severidad-1 {
-    border-color: #4caf50;
+
+.todo-app li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
 }
 
-/* Media */
-.severidad-2 {
-    border-color: #ff9800;
+.todo-app li span {
+    color: #000000;
+    font-size: 1.1rem;
+    flex-grow: 1;
+    margin-right: 15px;
 }
 
-/* Alta */
-.severidad-3 {
-    border-color: #f44336;
+.todo-app li button {
+    background-color: #a33b3b; /* Rojo oscuro para eliminar */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-.todo-severity {
-    font-weight: bold;
-    margin-top: 5px;
-}
-
-.todo-desc {
-    display: block;
-    font-size: 0.85rem;
-    color: #555;
+.todo-app li button:hover {
+    background-color: #c0392b; /* Rojo más vivo al tocarlo */
 }

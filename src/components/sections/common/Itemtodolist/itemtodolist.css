@@ -3,8 +3,10 @@
     justify-content: space-between;
     align-items: center;
     border-left: 8px solid;
-    padding: 15px;
+    padding: clamp(12px, 3vw, 15px);
     border-radius: 10px;
+    flex-wrap: wrap;          /* permite ajuste en pantallas pequeñas */
+    gap: 10px;
 }
 
 /* Baja */
@@ -25,10 +27,11 @@
 .todo-severity {
     font-weight: bold;
     margin-top: 5px;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 
 .todo-desc {
     display: block;
-    font-size: 0.85rem;
+    font-size: clamp(0.8rem, 2.2vw, 0.85rem);
     color: #555;
 }
