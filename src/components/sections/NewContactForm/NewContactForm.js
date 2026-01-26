@@ -38,7 +38,9 @@ function NewContactForm({ onAdd }) {
     contactos.push(nuevoContacto);
     saveContactsToStorage(contactos);
 
-    onAdd(nuevoContacto);
+    // 🔁 solo pedir refresco
+    if (onAdd) onAdd();
+
     form.reset();
   });
 

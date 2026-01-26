@@ -1,6 +1,5 @@
 import { ItemContacto } from "../common/ItemContacto.js";
 import { getContactsFromStorage } from "../common/LocalStorage/Storagecontacto.js";
-import { NewContactForm } from "../NewContactForm/NewContactForm.js";
 
 function Contactos() {
     const section = document.createElement("section");
@@ -11,10 +10,18 @@ function Contactos() {
 
     const list = document.createElement("div");
 
-    const contactos = getContactsFromStorage();
-    contactos.forEach(contacto => {
-        list.appendChild(ItemContacto(contacto));
-    });
+    // 🔁 función para recargar contactos
+    const renderContactos = () => {
+        list.innerHTML = "";
+        const contactos = getContactsFromStorage();
+        contactos.forEach(contacto => {
+            list.appendChild(
+                ItemContacto(contacto, renderContactos)
+            );
+        });
+    };
+
+    renderContactos();
 
     section.appendChild(h2);
     section.appendChild(list);
@@ -23,3 +30,4 @@ function Contactos() {
 }
 
 export { Contactos };
+
