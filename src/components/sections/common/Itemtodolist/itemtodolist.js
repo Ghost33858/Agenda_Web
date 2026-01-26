@@ -1,79 +1,75 @@
 import { getTodosFromStorage, saveTodosToStorage } from '../LocalStorage/storage.js';
 
-function ItemTodoList(todo, onUpdate) {
+function ItemTodoList(todo) {
     const li = document.createElement('li');
-    li.className = 'todo-item'; // Clase para el CSS
+    li.className = `todo-item severidad-${todo.severity || 1}`;
 
-    // --- 1. CHECKBOX ---
+    // CHECKBOX
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.checked = todo.completed || false; // Estado inicial
-    
-    // Al marcar/desmarcar, guardamos el estado
-    checkbox.addEventListener('change', () => {
-        const todos = getTodosFromStorage();
-        const index = todos.findIndex(t => t.id === todo.id);
-        if (index !== -1) {
-            todos[index].completed = checkbox.checked;
-            saveTodosToStorage(todos);
-            span.style.textDecoration = checkbox.checked ? "line-through" : "none";
-            span.style.opacity = checkbox.checked ? "0.5" : "1";
-        }
-    });
+    checkbox.checked = todo.completed || false;
 
-    // --- 2. TEXTO DE LA TAREA ---
+    // TEXTO
     const span = document.createElement('span');
     span.textContent = todo.text;
-    // Aplicar estilo si ya estaba completada
-    if (todo.completed) {
-        span.style.textDecoration = "line-through";
-        span.style.opacity = "0.5";
-    }
 
-    // --- 3. BOTÓN EDITAR ---
+    // DESCRIPCIÓN
+    const desc = document.createElement('small');
+    desc.textContent = todo.description || "";
+    desc.className = "todo-desc";
+
+    // SEVERIDAD
+    const sev = document.createElement('span');
+    sev.className = `todo-severity sev-${todo.severity || 1}`;
+    sev.textContent = `Severidad: ${todo.severity || 1}`;
+
+    // EDITAR
     const editBtn = document.createElement('button');
     editBtn.textContent = "Editar";
     editBtn.className = "btn-edit";
-    
+
     editBtn.addEventListener('click', () => {
-        const nuevoTexto = prompt("Edita tu tarea:", span.textContent);
-        if (nuevoTexto !== null && nuevoTexto.trim() !== "") {
-            const todos = getTodosFromStorage();
-            const index = todos.findIndex(t => t.id === todo.id);
-            if (index !== -1) {
-                todos[index].text = nuevoTexto.trim();
-                saveTodosToStorage(todos);
-                span.textContent = nuevoTexto.trim(); // Actualiza la UI sin recargar
-            }
+        const nuevoTexto = prompt("Editar tarea:", todo.text);
+        const nuevaDesc = prompt("Editar descripción:", todo.description || "");
+        const nuevaSev = prompt("Severidad (1 = baja, 2 = media, 3 = alta):", todo.severity || 1);
+
+        if (!nuevoTexto || !nuevaSev) return;
+
+        const todos = getTodosFromStorage();
+        const index = todos.findIndex(t => t.id === todo.id);
+
+        if (index !== -1) {
+            todos[index].text = nuevoTexto.trim();
+            todos[index].description = nuevaDesc.trim();
+            todos[index].severity = Number(nuevaSev);
+
+            saveTodosToStorage(todos);
+
+            span.textContent = nuevoTexto;
+            desc.textContent = nuevaDesc;
+            sev.textContent = `Severidad: ${nuevaSev}`;
+            li.className = `todo-item severidad-${nuevaSev}`;
         }
     });
 
-    // --- 4. BOTÓN ELIMINAR ---
+    // ELIMINAR
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = "Eliminar";
     deleteBtn.className = "btn-delete";
 
     deleteBtn.addEventListener('click', () => {
-        if (confirm("¿Eliminar esta tarea?")) {
-            const todos = getTodosFromStorage().filter(t => t.id !== todo.id);
-            saveTodosToStorage(todos);
-            li.remove();
-        }
+        const todos = getTodosFromStorage().filter(t => t.id !== todo.id);
+        saveTodosToStorage(todos);
+        li.remove();
     });
 
-    // --- Estructura Final ---
-    const leftContainer = document.createElement('div');
-    leftContainer.className = "todo-left";
-    leftContainer.appendChild(checkbox);
-    leftContainer.appendChild(span);
+    const left = document.createElement('div');
+    left.append(checkbox, span, desc, sev);
 
-    const rightContainer = document.createElement('div');
-    rightContainer.className = "todo-right";
-    rightContainer.appendChild(editBtn);
-    rightContainer.appendChild(deleteBtn);
+    const right = document.createElement('div');
+    right.append(editBtn, deleteBtn);
 
-    li.appendChild(leftContainer);
-    li.appendChild(rightContainer);
+    li.append(left, right);
 
     return li;
 }

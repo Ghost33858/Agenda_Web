@@ -1,4 +1,3 @@
-import { NewTodoForm } from '../sections/common/newtodoform/newtodoform.js';
 import { ItemTodoList } from '../sections/common/Itemtodolist/itemtodolist.js';
 import { getTodosFromStorage } from '../sections/common/LocalStorage/storage.js';
 
@@ -10,13 +9,13 @@ function TodoApp() {
     h2.textContent = "Mi Lista de Pendientes";
 
     const ul = document.createElement("ul");
-    const todos = getTodosFromStorage();
 
-    // Solo cargamos los elementos que ya están guardados
+    // 🔹 Obtener y ordenar por severidad (Alta → Media → Baja)
+    const todos = getTodosFromStorage()
+        .sort((a, b) => (b.severity || 1) - (a.severity || 1));
+
     todos.forEach(todo => {
-        ul.appendChild(ItemTodoList(todo, () => {
-            // Refrescar si fuera necesario al borrar
-        }));
+        ul.appendChild(ItemTodoList(todo));
     });
 
     section.appendChild(h2);
